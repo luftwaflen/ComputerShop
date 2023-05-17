@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
+using ComputerShopData.Entities;
 using ComputerShopData.Repositories.Interfases;
 using ComputerShopLogic.Dto;
 using ComputerShopLogic.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShopLogic.Services.Implementation
 {
@@ -14,19 +10,22 @@ namespace ComputerShopLogic.Services.Implementation
     {
         private readonly ITagRepository _repository;
         private readonly IMapper _mapper;
+
         public TagService(IMapper mapper, ITagRepository repository)
         {
             _mapper = mapper;
             _repository = repository;
         }
-        public void Create(TagDto entity)
+
+        public void Create(TagDto obj)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<TagEntity>(obj);
+            _repository.Create(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
         }
 
         public IEnumerable<TagDto> GetAll()
@@ -38,18 +37,22 @@ namespace ComputerShopLogic.Services.Implementation
                 var tagDto = _mapper.Map<TagDto>(tags);
                 tagsDto.Add(tagDto);
             }
-            
+
             return tagsDto;
         }
 
         public TagDto GetById(int id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(id);
+            var dto = _mapper.Map<TagDto>(entity);
+
+            return dto;
         }
 
-        public void Update(TagDto entity)
+        public void Update(TagDto obj)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<TagEntity>(obj);
+            _repository.Update(entity);
         }
     }
 }
