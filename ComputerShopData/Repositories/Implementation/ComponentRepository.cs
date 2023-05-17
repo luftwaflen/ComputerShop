@@ -1,10 +1,5 @@
 ﻿using ComputerShopData.Entities;
 using ComputerShopData.Repositories.Interfases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShopData.Repositories.Implementation
 {
@@ -17,27 +12,33 @@ namespace ComputerShopData.Repositories.Implementation
         }
         public void Create(ComponentEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Components.Add(entity);
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var component = GetById(id);
+            _db.Components.Remove(component);
+            _db.SaveChanges();
         }
 
         public IEnumerable<ComponentEntity> GetAll()
         {
-            throw new NotImplementedException();
+            var components = _db.Components.ToList();
+            return components;
         }
 
         public ComponentEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            var component = _db.Components.Find(id);
+            return component;
         }
 
         public void Update(ComponentEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Components.Update(entity);
+            _db.SaveChanges();
         }
     }
 }
