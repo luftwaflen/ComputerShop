@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ComputerShopLogic.Mappers
 {
-    public class ComponentMappingProfile : Profile
+    public class ComponentDtoEntityMapper : Profile
     {
-        public ComponentMappingProfile()
+        public ComponentDtoEntityMapper()
         {
             CreateMap<ComponentDto, ComponentEntity>().ReverseMap();
         }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ComputerShopLogic.Mappers
 {
-    public class TagMappingProfile : Profile
+    public class TagDtoEntityMapper : Profile
     {
-        public TagMappingProfile()
+        public TagDtoEntityMapper()
         {
             CreateMap<TagDto,TagEntity>().ReverseMap();
         }

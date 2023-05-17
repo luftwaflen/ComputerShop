@@ -32,7 +32,7 @@ namespace ComputerShopLogic.DI
             services.AddScoped<ITagService,TagService>();
             services.AddScoped<IComponentService,ComponentService>();
 
-            services.AddAutoMapper(typeof (ComponentMappingProfile), typeof (TagMappingProfile));
+            //services.AddAutoMapper(typeof (ComponentDtoEntityMapper), typeof (TagDtoEntityMapper));
         }
     }
 }
