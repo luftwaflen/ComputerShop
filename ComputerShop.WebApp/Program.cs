@@ -1,4 +1,7 @@
+using ComputerShop.WebApp.Mappers;
 using ComputerShopLogic.DI;
+using ComputerShopLogic.Mappers;
+using ComputerShopLogic.Services.Interfaces;
 
 namespace ComputerShop.WebApp
 {
@@ -14,6 +17,9 @@ namespace ComputerShop.WebApp
             var connection = builder.Configuration
                 .GetConnectionString("DefaultConnection");
             builder.Services.AddServices(connection);
+
+            builder.Services.AddAutoMapper(typeof(ComponentDtoEntityMapper),
+                typeof(TagDtoEntityMapper), typeof(ComponentViewDtoMapper), typeof(TagViewDtoMapper));
 
             var app = builder.Build();
 
@@ -34,7 +40,7 @@ namespace ComputerShop.WebApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Component}/{action=Index}/{id?}");
 
             app.Run();
         }
