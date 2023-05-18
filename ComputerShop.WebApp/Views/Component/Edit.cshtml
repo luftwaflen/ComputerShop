@@ -1,32 +1,24 @@
-﻿<head>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ComputerShop.WebApp.styles.css" asp-append-version="true" />
-</head>
-<h5>Edit</h5>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Новое сообщение</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+﻿@model ComponentViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>@Html.DisplayFor(model => model.Name)</h4>
+    </div>
+    <div class="modal-body">
+        <form asp-action="Edit" asp-controller="Component" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="editName" class="form-label">Название</label>
+                <input type="text" value="@Model.Name" class="form-control" id="editName" asp-for="Name">
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Получатель:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Сообщение:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
+            <div class="mb-3">
+                <label for="editDescription" class="form-label">Описание</label>
+                <input type="text" value="@Model.Description" class="form-control" id="editDescription" asp-for="Description">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                <button type="button" class="btn btn-primary">Отправить сообщение</button>
+            <div class="mb-3">
+                <label for="editCoast" class="form-label">Цена</label>
+                <input type="text" value="@Model.Coast" class="form-control" id="editCoast" asp-for="Coast">
             </div>
-        </div>
+            <input type="submit" class="btn-primary" value="Сохранить изменения" />
+        </form>
     </div>
 </div>

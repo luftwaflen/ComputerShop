@@ -5,6 +5,7 @@ using ComputerShopLogic.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace ComputerShop.WebApp.Controllers
 {
@@ -56,13 +57,8 @@ namespace ComputerShop.WebApp.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Create(ComponentViewModel component)
         {
-            if (ModelState.IsValid)
-            {
-                var dto = _mapper.Map<ComponentDto>(component);
-                _componentService.Create(dto);
-                return RedirectToAction("Index");
-            }
-
+            var dto = _mapper.Map<ComponentDto>(component);
+            _componentService.Create(dto);
             return RedirectToAction("Index");
         }
 
@@ -76,38 +72,18 @@ namespace ComputerShop.WebApp.Controllers
 
         // POST: ComponentController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(ComponentViewModel component)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var dto = _mapper.Map<ComponentDto>(component);
+            _componentService.Update(dto);
+            return RedirectToAction("Index");
         }
 
-        // GET: ComponentController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: ComponentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _componentService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
