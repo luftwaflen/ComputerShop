@@ -10,8 +10,8 @@ namespace ComputerShopData
 {
     public class AppDbContext : DbContext
     {
-        DbSet<ComponentEntity> Components { get; set; }
-        DbSet<TagEntity> Tags { get; set; }
+        public DbSet<ComponentEntity> Components { get; set; }
+        public DbSet<TagEntity> Tags { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {

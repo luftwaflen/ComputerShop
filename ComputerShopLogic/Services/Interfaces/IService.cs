@@ -10,8 +10,8 @@ namespace ComputerShopLogic.Services.Interfaces
     {
         public IEnumerable<T> GetAll();
         public T GetById(int id);
-        public void Create(T entity);
-        public void Update(T entity);
+        public void Create(T obj);
+        public void Update(T obj);
         public void Delete(int id);
     }
 }

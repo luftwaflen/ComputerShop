@@ -17,27 +17,33 @@ namespace ComputerShopData.Repositories.Implementation
         }
         public void Create(TagEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Tags.Add(entity);
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var tag = GetById(id);
+            _db.Tags.Remove(tag);
+            _db.SaveChanges();
         }
 
         public IEnumerable<TagEntity> GetAll()
         {
-            throw new NotImplementedException();
+            var tags = _db.Tags.ToList();
+            return tags;
         }
 
         public TagEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            var tag = _db.Tags.Find(id);
+            return tag;
         }
 
         public void Update(TagEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Tags.Update(entity);
+            _db.SaveChanges();
         }
     }
 }

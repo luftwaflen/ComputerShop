@@ -1,0 +1,19 @@
+﻿@model ComponentViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>@Html.DisplayFor(model => model.Name)</h4>       
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>Подробности</dt>
+            <dd>@Html.DisplayFor(model => model.Description)</dd>
+
+            <dt>Цена</dt>
+            <dd>@Html.DisplayFor(model => model.Coast)</dd>
+        </dl>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+</div>
