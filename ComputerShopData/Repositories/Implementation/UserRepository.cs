@@ -5,29 +5,41 @@ namespace ComputerShopData.Repositories.Implementation
 {
     public class UserRepository : IUserRepository
     {
+        private readonly AppDbContext _db;
+
+        public UserRepository(AppDbContext db)
+        {
+            _db = db;
+        }
+
         public void Create(UserEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Users.Add(entity);
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var user = _db.Users.First(u => u.Id == id);
+            _db.Users.Remove(user);
+            _db.SaveChanges();
         }
 
         public IEnumerable<UserEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _db.Users.ToList();
         }
 
         public UserEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            var user = _db.Users.First(u => u.Id == id);
+            return user;
         }
 
         public void Update(UserEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Users.Update(entity);
+            _db.SaveChanges();
         }
     }
 }

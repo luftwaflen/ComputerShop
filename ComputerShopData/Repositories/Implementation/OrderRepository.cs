@@ -5,29 +5,41 @@ namespace ComputerShopData.Repositories.Implementation
 {
     public class OrderRepository : IOrderRepository
     {
+        private readonly AppDbContext _db;
+
+        public OrderRepository(AppDbContext db)
+        {
+            _db = db;
+        }
+
         public void Create(OrderEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Orders.Add(entity);
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var order = _db.Orders.First(o => o.Id == id);
+            _db.Orders.Remove(order);
+            _db.SaveChanges();
         }
 
         public IEnumerable<OrderEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _db.Orders.ToList();
         }
 
         public OrderEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            var order = _db.Orders.First(o => o.Id == id);
+            return order;
         }
 
         public void Update(OrderEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Orders.Update(entity);
+            _db.SaveChanges();
         }
     }
 }
