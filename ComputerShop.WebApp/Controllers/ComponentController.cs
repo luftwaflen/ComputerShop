@@ -2,25 +2,19 @@
 using ComputerShop.WebApp.Models;
 using ComputerShopLogic.Dto;
 using ComputerShopLogic.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.ComponentModel;
 
 namespace ComputerShop.WebApp.Controllers
 {
     public class ComponentController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly ITagService _tagService;
         private readonly IComponentService _componentService;
 
         public ComponentController(IMapper mapper,
-            ITagService tagService,
             IComponentService componentService)
         {
             _mapper = mapper;
-            _tagService = tagService;
             _componentService = componentService;
         }
         // GET: ComponentController

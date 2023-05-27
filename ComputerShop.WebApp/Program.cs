@@ -19,7 +19,7 @@ namespace ComputerShop.WebApp
             builder.Services.AddServices(connection);
 
             builder.Services.AddAutoMapper(typeof(ComponentDtoEntityMapper),
-                typeof(TagDtoEntityMapper), typeof(ComponentViewDtoMapper), typeof(TagViewDtoMapper));
+                typeof(ComponentViewDtoMapper));
 
             var app = builder.Build();
 
@@ -35,8 +35,6 @@ namespace ComputerShop.WebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",

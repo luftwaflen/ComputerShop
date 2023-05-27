@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.WebApp", "ComputerShop.WebApp\ComputerShop.WebApp.csproj", "{7EB553D6-4578-4BAF-8C99-3B82E2B53AC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShop.WebApp", "ComputerShop.WebApp\ComputerShop.WebApp.csproj", "{7EB553D6-4578-4BAF-8C99-3B82E2B53AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopData", "ComputerShopData\ComputerShopData.csproj", "{3F4466DF-E0D5-416E-8392-705084945031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopData", "ComputerShopData\ComputerShopData.csproj", "{3F4466DF-E0D5-416E-8392-705084945031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopLogic", "ComputerShopLogic\ComputerShopLogic.csproj", "{BE73672A-43E6-4A21-8925-A62A9D997B75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopLogic", "ComputerShopLogic\ComputerShopLogic.csproj", "{BE73672A-43E6-4A21-8925-A62A9D997B75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

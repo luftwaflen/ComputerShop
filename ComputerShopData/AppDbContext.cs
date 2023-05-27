@@ -1,17 +1,13 @@
 ﻿using ComputerShopData.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShopData
 {
     public class AppDbContext : DbContext
     {
         public DbSet<ComponentEntity> Components { get; set; }
-        public DbSet<TagEntity> Tags { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ComputerShopData.Entities
 {
-    public class TagEntity
+    public class OrderEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public List<ComponentEntity> TagComponents { get; set; }
+        public UserEntity User { get; set; }
+        public ComponentEntity Component { get; set; }
+        public decimal Coast { get; set; }
     }
 }

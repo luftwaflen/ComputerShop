@@ -3,11 +3,6 @@ using ComputerShopData.Entities;
 using ComputerShopData.Repositories.Interfases;
 using ComputerShopLogic.Dto;
 using ComputerShopLogic.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShopLogic.Services.Implementation
 {
