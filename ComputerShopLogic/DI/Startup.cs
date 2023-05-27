@@ -14,13 +14,17 @@ namespace ComputerShopLogic.DI
         {
             services.AddDbContext<AppDbContext>(
                 options => options
-                 .UseSqlite(connection)
-                 .LogTo(Console.WriteLine)
-                );
+                    .UseSqlite(connection)
+                    .LogTo(Console.WriteLine)
+            );
 
             services.AddScoped<IComponentRepository, ComponentRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
-            services.AddScoped<IComponentService,ComponentService>();
+            services.AddScoped<IComponentService, ComponentService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrderService, OrderService>();
         }
     }
 }
