@@ -25,7 +25,6 @@ namespace ComputerShop.WebApp.Controllers
             foreach (var component in componentsDto)
             {
                 var view = _mapper.Map<ComponentViewModel>(component);
-                view.Icon = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmarket.yandex.by%2Fproduct--gigabyte-geforce-gtx-470-700mhz-pci-e-20-1280mb-3348mhz-320-bit-2xdvi-mini-hdmi-hdcp%2F6411981&psig=AOvVaw1kvA6BbZ-5ncb4GLDboVrs&ust=1684448906058000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCIjGt6ez_f4CFQAAAAAdAAAAABAE";
                 componentsView.Add(view);
             }
 
