@@ -11,7 +11,19 @@ namespace ComputerShopData
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
+        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderEntity>()
+                .HasOne<ComponentEntity>()
+                .WithMany()
+                .HasForeignKey(o => o.ComponentId);
+
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(u => u.Orders)
+                .WithOne()
+                .HasForeignKey(o => o.UserId);
         }
     }
 }

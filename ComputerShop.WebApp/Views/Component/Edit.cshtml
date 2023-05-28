@@ -18,7 +18,11 @@
                 <label for="editCoast" class="form-label">Цена</label>
                 <input type="text" value="@Model.Coast" class="form-control" id="editCoast" asp-for="Coast">
             </div>
-            <input type="submit" class="btn-primary" value="Сохранить изменения" />
+            <div class="mb-3">
+                <label for="editUrl" class="form-label">Ссылка на изображение</label>
+                <input type="text" value="@Model.ImageUrl" class="form-control" id="editUrl" asp-for="ImageUrl">
+            </div>
+            <input type="submit" class="btn-primary" value="Сохранить изменения"/>
         </form>
     </div>
 </div>

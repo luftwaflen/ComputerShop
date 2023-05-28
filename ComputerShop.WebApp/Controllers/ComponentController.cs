@@ -10,14 +10,21 @@ namespace ComputerShop.WebApp.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IComponentService _componentService;
+        private readonly IOrderService _orderService;
+        private readonly IUserService _userService;
 
-        public ComponentController(IMapper mapper,
-            IComponentService componentService)
+        public ComponentController(
+            IMapper mapper,
+            IComponentService componentService,
+            IOrderService orderService,
+            IUserService userService)
         {
             _mapper = mapper;
             _componentService = componentService;
+            _orderService = orderService;
+            _userService = userService;
         }
-        // GET: ComponentController
+
         public ActionResult Index()
         {
             var componentsDto = _componentService.GetAll();
@@ -31,23 +38,31 @@ namespace ComputerShop.WebApp.Controllers
             return View(componentsView);
         }
 
-        // GET: ComponentController/Details/5
+        public IActionResult Order(int id)
+        {
+            var order = new OrderDto();
+            var component = _componentService.GetById(id);
+            order.Coast = component.Coast;
+            order.ComponentId = component.Id;
+            var user = _userService.GetById(1);
+            order.UserId = user.Id;
+            _orderService.Create(order);
+            return RedirectToAction("Details", new { id = id });
+        }
+
         public ActionResult Details(int id)
         {
             var dto = _componentService.GetById(id);
             var view = _mapper.Map<ComponentViewModel>(dto);
-            return PartialView(view);
+            return View(view);
         }
 
-        // GET: ComponentController/Create
         public ActionResult Create()
         {
             return PartialView();
         }
 
-        // POST: ComponentController/Create
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult Create(ComponentViewModel component)
         {
             var dto = _mapper.Map<ComponentDto>(component);
@@ -55,7 +70,6 @@ namespace ComputerShop.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: ComponentController/Edit/5
         public ActionResult Edit(int id)
         {
             var dto = _componentService.GetById(id);
@@ -63,9 +77,7 @@ namespace ComputerShop.WebApp.Controllers
             return PartialView(view);
         }
 
-        // POST: ComponentController/Edit/5
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult Edit(ComponentViewModel component)
         {
             var dto = _mapper.Map<ComponentDto>(component);

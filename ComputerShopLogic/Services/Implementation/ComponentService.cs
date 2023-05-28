@@ -11,7 +11,7 @@ namespace ComputerShopLogic.Services.Implementation
         private readonly IComponentRepository _repository;
         private readonly IMapper _mapper;
 
-        public ComponentService(IMapper mapper , IComponentRepository repository)
+        public ComponentService(IMapper mapper, IComponentRepository repository)
         {
             _mapper = mapper;
             _repository = repository;
@@ -53,6 +53,22 @@ namespace ComputerShopLogic.Services.Implementation
         {
             var entity = _mapper.Map<ComponentEntity>(obj);
             _repository.Update(entity);
+        }
+
+        public IEnumerable<ComponentDto> FindByName(string name)
+        {
+            var components = GetAll();
+            var finded = components.Where(c => c.Name == name);
+
+            return finded;
+        }
+
+        public IEnumerable<ComponentDto> FindByCoast(decimal from, decimal to)
+        {
+            var components = GetAll();
+            var finded = components.Where(c => c.Coast >= from && c.Coast <= to);
+
+            return finded;
         }
     }
 }

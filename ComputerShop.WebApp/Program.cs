@@ -23,7 +23,8 @@ namespace ComputerShop.WebApp
                 typeof(ComponentDtoEntityMapper),
                 typeof(UserDtoEntityMapper),
                 typeof(OrderDtoEntityMapper),
-                typeof(ComponentViewDtoMapper)
+                typeof(ComponentViewDtoMapper),
+                typeof(OrderViewDtoMapper)
             );
 
             var app = builder.Build();

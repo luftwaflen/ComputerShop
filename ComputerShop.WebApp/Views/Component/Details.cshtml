@@ -1,19 +1,36 @@
 ﻿@model ComponentViewModel
 
-<div class="modal-content">
-    <div class="modal-header">
-        <h4>@Html.DisplayFor(model => model.Name)</h4>       
-    </div>
-    <div class="modal-body">
-        <dl class="dl-horizontal">
-            <dt>Подробности</dt>
-            <dd>@Html.DisplayFor(model => model.Description)</dd>
+@{
+    ViewBag.Title = @Model.Name;
+    Layout = "_Layout";
+}
 
-            <dt>Цена</dt>
-            <dd>@Html.DisplayFor(model => model.Coast)</dd>
-        </dl>
+<h1>Component</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Название</h2>
+            <p>@Model.Name</p>
+        </div>
+        <div class="col">
+            <img src="@Model.ImageUrl" alt="@Model.Name" width="200"/>
+        </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
-      </div>
+    <div class="row">
+        <div class="col">
+            <h2>Описание</h2>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Цена</h2>
+            <p>@Model.Coast</p>
+        </div>
+    </div>
+    <div>
+        <button class="btn-primary btn-lg">
+            @Html.ActionLink("Купить", "Order", new { id = Model.Id })
+        </button>
+    </div>
 </div>

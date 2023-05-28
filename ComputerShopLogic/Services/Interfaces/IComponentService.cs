@@ -9,5 +9,7 @@ namespace ComputerShopLogic.Services.Interfaces
 {
     public interface IComponentService : IService<ComponentDto>
     {
+        public IEnumerable<ComponentDto> FindByName(string name);
+        public IEnumerable<ComponentDto> FindByCoast(decimal from, decimal to);
     }
 }
