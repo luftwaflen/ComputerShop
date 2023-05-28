@@ -66,7 +66,7 @@ namespace ComputerShopLogic.Services.Implementation
         public IEnumerable<ComponentDto> FindByCoast(decimal from, decimal to)
         {
             var components = GetAll();
-            var finded = components.Where(c => c.Coast >= from && c.Coast <= to);
+            var finded = components.Where(c => c.Coast >= from && c.Coast <= to).ToList();
 
             return finded;
         }

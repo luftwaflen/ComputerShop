@@ -38,10 +38,32 @@ namespace ComputerShop.WebApp.Controllers
                 componentsByName = _componentService.FindByName(findParams.Name);
             }
 
-            var componentByCoast = _componentService.FindByCoast(findParams.CoastFrom, findParams.CoastTo);
-            var findedComponents = componentsByName.Intersect(componentByCoast);
+            var componentsByCoast = _componentService.FindByCoast(findParams.CoastFrom, findParams.CoastTo);
+            var findedComponents = new List<ComponentDto>();
+            foreach (var componentByName in componentsByName)
+            {
+                foreach (var componentByCoast in componentsByCoast)
+                {
+                    if (componentByName.Name == componentByCoast.Name &&
+                        componentByName.Description == componentByName.Description &&
+                        componentByName.Id == componentByName.Id &&
+                        componentByName.Coast == componentByName.Coast)
+                    {
+                        findedComponents.Add(componentByName);
+                    }
+                }
+            }
+            
+            var findViews = new List<ComponentViewModel>();
+            foreach (var component in findedComponents)
+            {
+                var view = _mapper.Map<ComponentViewModel>(component);
+                findViews.Add(view);
+            }
 
-            return View(findedComponents);
+            ViewData["Components"] = findViews;
+
+            return View(findParams);
         }
     }
 }
