@@ -2,7 +2,7 @@
 
 namespace ComputerShopData.Repositories.Interfases
 {
-    public interface IComponentRepository : IRepository<ComponentEntity>
+    public interface IUserRepository : IRepository<UserEntity>
     {
     }
 }

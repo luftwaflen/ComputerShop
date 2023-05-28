@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerShopLogic.Dto
+namespace ComputerShopData.Entities
 {
-    public class TagDto
+    public class UserEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public List<ComponentDto> TagComponents { get; set; }
+        public List<OrderEntity> Orders { get; set; }
     }
 }

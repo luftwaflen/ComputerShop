@@ -1,5 +1,6 @@
 using ComputerShop.WebApp.Mappers;
 using ComputerShopLogic.DI;
+using ComputerShopLogic.Dto;
 using ComputerShopLogic.Mappers;
 using ComputerShopLogic.Services.Interfaces;
 
@@ -18,8 +19,13 @@ namespace ComputerShop.WebApp
                 .GetConnectionString("DefaultConnection");
             builder.Services.AddServices(connection);
 
-            builder.Services.AddAutoMapper(typeof(ComponentDtoEntityMapper),
-                typeof(TagDtoEntityMapper), typeof(ComponentViewDtoMapper), typeof(TagViewDtoMapper));
+            builder.Services.AddAutoMapper(
+                typeof(ComponentDtoEntityMapper),
+                typeof(UserDtoEntityMapper),
+                typeof(OrderDtoEntityMapper),
+                typeof(ComponentViewDtoMapper),
+                typeof(OrderViewDtoMapper)
+            );
 
             var app = builder.Build();
 
@@ -35,8 +41,6 @@ namespace ComputerShop.WebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
