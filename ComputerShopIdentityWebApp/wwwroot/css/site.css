@@ -20,3 +20,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+A {
+  color: snow; /* Цвет ссылок */
+  text-decoration: none;
+}
+
+A:visited {
+  color: snow; /* Цвет посещенных ссылок */
+}
+
+A:active {
+  color: snow; /* Цвет активных ссылок */
+}
+
+.field-validation-error {
+  color: #b94a48;
+}

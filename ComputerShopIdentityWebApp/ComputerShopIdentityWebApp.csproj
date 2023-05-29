@@ -11,4 +11,16 @@
       <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ComputerShopIdentity\ComputerShopIdentity.csproj" />
+      <ProjectReference Include="..\ComputerShopLogic\ComputerShopLogic.csproj" />
+    </ItemGroup>
+
 </Project>
