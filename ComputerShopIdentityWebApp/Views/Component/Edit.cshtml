@@ -1,0 +1,28 @@
+﻿@model ComponentViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>@Html.DisplayFor(model => model.Name)</h4>
+    </div>
+    <div class="modal-body">
+        <form asp-action="Edit" asp-controller="Component" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="editName" class="form-label">Название</label>
+                <input type="text" value="@Model.Name" class="form-control" id="editName" asp-for="Name">
+            </div>
+            <div class="mb-3">
+                <label for="editDescription" class="form-label">Описание</label>
+                <input type="text" value="@Model.Description" class="form-control" id="editDescription" asp-for="Description">
+            </div>
+            <div class="mb-3">
+                <label for="editCoast" class="form-label">Цена</label>
+                <input type="text" value="@Model.Coast" class="form-control" id="editCoast" asp-for="Coast">
+            </div>
+            <div class="mb-3">
+                <label for="editUrl" class="form-label">Ссылка на изображение</label>
+                <input type="text" value="@Model.ImageUrl" class="form-control" id="editUrl" asp-for="ImageUrl">
+            </div>
+            <input type="submit" class="btn-primary" value="Сохранить изменения"/>
+        </form>
+    </div>
+</div>
