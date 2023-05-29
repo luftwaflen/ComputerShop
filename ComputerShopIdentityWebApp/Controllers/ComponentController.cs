@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using ComputerShopIdentity.Models;
 using ComputerShopIdentityWebApp.Models;
 using ComputerShopLogic.Dto;
 using ComputerShopLogic.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ComputerShopIdentityWebApp.Controllers;
 
@@ -12,17 +15,29 @@ public class ComponentController : Controller
     private readonly IComponentService _componentService;
     private readonly IOrderService _orderService;
     private readonly IUserService _userService;
+    private readonly UserManager<UserIdentityModel> _userManager;
 
     public ComponentController(
         IMapper mapper,
         IComponentService componentService,
         IOrderService orderService,
-        IUserService userService)
+        IUserService userService,
+        UserManager<UserIdentityModel> userManager)
     {
         _mapper = mapper;
         _componentService = componentService;
         _orderService = orderService;
         _userService = userService;
+        _userManager = userManager;
+    }
+
+    private UserIdentityModel GetCurrentUser()
+    {
+        ClaimsPrincipal currentUser = this.User;
+        var currentUserID = Int32.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier).Value);
+        var user = _userManager.Users.First(u => u.Id == currentUserID);
+
+        return user;
     }
 
     public ActionResult Index()
@@ -44,7 +59,7 @@ public class ComponentController : Controller
         var component = _componentService.GetById(id);
         order.Coast = component.Coast;
         order.ComponentId = component.Id;
-        var user = _userService.GetById(1);
+        var user = GetCurrentUser();
         order.UserId = user.Id;
         _orderService.Create(order);
         return RedirectToAction("Details", new { id = id });

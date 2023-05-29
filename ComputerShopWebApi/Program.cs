@@ -1,5 +1,6 @@
 using ComputerShopLogic.DI;
 using ComputerShopLogic.Mappers;
+using ComputerShopWebApi.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,9 @@ builder.Services.AddServices(connection);
 builder.Services.AddAutoMapper(
     typeof(ComponentDtoEntityMapper),
     typeof(UserDtoEntityMapper),
-    typeof(OrderDtoEntityMapper)
+    typeof(OrderDtoEntityMapper),
+    typeof(ComponentApiDtoMapper),
+    typeof(OrderApiDtoMapper)
 );
 
 var app = builder.Build();

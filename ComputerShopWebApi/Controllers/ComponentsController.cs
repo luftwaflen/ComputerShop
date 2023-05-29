@@ -1,5 +1,7 @@
-﻿using ComputerShopLogic.Dto;
+﻿using AutoMapper;
+using ComputerShopLogic.Dto;
 using ComputerShopLogic.Services.Interfaces;
+using ComputerShopWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerShopWebApi.Controllers;
@@ -9,46 +11,60 @@ namespace ComputerShopWebApi.Controllers;
 public class ComponentsController : ControllerBase
 {
     private readonly IComponentService _componentService;
+    private readonly IMapper _mapper;
 
-    public ComponentsController(IComponentService componentService)
+    public ComponentsController(IComponentService componentService, IMapper mapper)
     {
+        _mapper = mapper;
         _componentService = componentService;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<ComponentDto>> Get()
+    public ActionResult<IEnumerable<ComponentApiModel>> Get()
     {
-        return _componentService.GetAll().ToList();
+        var dtos = _componentService.GetAll().ToList();
+        var apis = new List<ComponentApiModel>();
+        foreach (var dto in dtos)
+        {
+            var api = _mapper.Map<ComponentApiModel>(dto);
+            apis.Add(api);
+        }
+
+        return apis;
     }
 
     [HttpGet("{id}")]
-    public ActionResult<ComponentDto> Get(int id)
+    public ActionResult<ComponentApiModel> Get(int id)
     {
-        return _componentService.GetById(id);
+        var dto = _componentService.GetById(id);
+        var api = _mapper.Map<ComponentApiModel>(dto);
+        
+        return api;
     }
 
     [HttpPost]
-    public ActionResult<ComponentDto> Post(ComponentDto componet)
+    public ActionResult<ComponentApiModel> Post(ComponentApiModel componet)
     {
         if (componet == null)
         {
             return BadRequest();
         }
 
-        _componentService.Create(componet);
+        var dto = _mapper.Map<ComponentDto>(componet);
+        _componentService.Create(dto);
 
         return Ok(componet);
     }
     
     [HttpPut]
-    public ActionResult<ComponentDto> Put(ComponentDto componet)
+    public ActionResult<ComponentApiModel> Put(ComponentApiModel componet)
     {
         if (componet == null)
         {
             return NotFound();
         }
-
-        _componentService.Update(componet);
+        var dto = _mapper.Map<ComponentDto>(componet);
+        _componentService.Update(dto);
 
         return Ok(componet);
     }

@@ -1,5 +1,7 @@
-﻿using ComputerShopLogic.Dto;
+﻿using AutoMapper;
+using ComputerShopLogic.Dto;
 using ComputerShopLogic.Services.Interfaces;
+using ComputerShopWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerShopWebApi.Controllers;
@@ -9,50 +11,63 @@ namespace ComputerShopWebApi.Controllers;
 public class OrdersController : ControllerBase
 {
     private readonly IOrderService _orderService;
+    private readonly IMapper _mapper;
 
-    public OrdersController(IOrderService orderService)
+    public OrdersController(IOrderService orderService, IMapper mapper)
     {
+        _mapper = mapper;
         _orderService = orderService;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<OrderDto>> Get()
+    public ActionResult<IEnumerable<OrderApiModel>> Get()
     {
-        return _orderService.GetAll().ToList();
+        var dtos = _orderService.GetAll().ToList();
+        var apis = new List<OrderApiModel>();
+        foreach (var dto in dtos)
+        {
+            var api = _mapper.Map<OrderApiModel>(dto);
+            apis.Add(api);
+        }
+
+        return apis;
     }
 
     [HttpGet("{id}")]
-    public ActionResult<OrderDto> Get(int id)
+    public ActionResult<OrderApiModel> Get(int id)
     {
-        return _orderService.GetById(id);
+        var dto = _orderService.GetById(id);
+        var api = _mapper.Map<OrderApiModel>(dto);
+        return api;
     }
 
     [HttpPost]
-    public ActionResult<OrderDto> Post(OrderDto componet)
+    public ActionResult<OrderApiModel> Post(OrderApiModel componet)
     {
         if (componet == null)
         {
             return BadRequest();
         }
 
-        _orderService.Create(componet);
+        var dto = _mapper.Map<OrderDto>(componet);
+        _orderService.Create(dto);
 
         return Ok(componet);
     }
-    
+
     [HttpPut]
-    public ActionResult<OrderDto> Put(OrderDto componet)
+    public ActionResult<OrderApiModel> Put(OrderApiModel componet)
     {
         if (componet == null)
         {
             return NotFound();
         }
-
-        _orderService.Update(componet);
+        var dto = _mapper.Map<OrderDto>(componet);
+        _orderService.Update(dto);
 
         return Ok(componet);
     }
-    
+
     [HttpDelete("{id}")]
     public ActionResult<OrderDto> Delete(int id)
     {
@@ -61,6 +76,7 @@ public class OrdersController : ControllerBase
         {
             return NotFound();
         }
+
         _orderService.Delete(id);
 
         return Ok(component);
